@@ -207,7 +207,13 @@ View.prototype.find = function(ch) {
 //end of View prototype
 
 //5 turns for the world to move
-for (var i = 0; i < 5; i++){
+// for (var i = 0; i < 5; i++){
+//   world.turn();
+//   console.log(world.toString());
+// }
+
+//set slowed down infinite loop
+setInterval(function () {
   world.turn();
   console.log(world.toString());
-}
+}, 1000);
