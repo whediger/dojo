@@ -1,6 +1,3 @@
-//Constructor Vector.
-//takes 2 params
-
 
 function Vector( x, y ) {
   this.x = x;
