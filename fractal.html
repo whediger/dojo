@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>fractal</title>
+  </head>
+
+  <body>
+    <canvas width="1200" height="600"></canvas>
+
+    <script type="text/javascript">
+      var cx = document.querySelector("canvas").getContext("2d");
+      function branch(length, angle, scale) {
+        var red = Math.floor((Math.random() * 255));
+        var green = Math.floor((Math.random() * 255));
+        var blue = Math.floor((Math.random() * 255));
+        cx.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+        //cx.fillStyle = 'rgb( 55, 20, 3 )';
+        cx.fillRect(0,0,Math.floor(Math.random()*5),length);
+        if (length < 8) return;
+        cx.save();
+        cx.translate(0, length);
+        cx.rotate(-angle);
+        branch(Math.random()* 2 * length * scale, angle, scale);
+        cx.rotate(Math.random() * 2.5 * angle);
+        branch(Math.random()* 1.5 * length * scale, angle, scale);
+        cx.restore();
+      }
+      cx.translate(500, 60);
+      branch(Math.random()*120, Math.random(), Math.random());
+    </script>
+  </body>
+</html>
