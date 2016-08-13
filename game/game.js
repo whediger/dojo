@@ -10,6 +10,9 @@ var simpleLevelPlan = [
   "                      "
 ];
 
+var points = 0;
+
+document.getElementById('points').innerHTML = points;
 
 var actorChars = {
   "@": Player,
@@ -67,7 +70,7 @@ Vector.prototype.times = function(factor) {
 function Player(pos) {
   this.pos = pos.plus(new Vector(0, -0.5));
   this.size = new Vector(0.8, 1.5);
-  this.speed = new Vector(0, 0);
+  this.speed = new Vector(0, 0);``
 }
 
 Player.prototype.type = "player";
@@ -88,7 +91,7 @@ Lava.prototype.type = "lava";
 
 function Coin(pos) {
   this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
-  this.size = new Vector(0.6, 0.6);
+  this.size = new Vector(.75, 1);
   this.wobble = Math.random() * Math.PI * 2;
 }
 Coin.prototype.type = "coin";
@@ -115,7 +118,7 @@ function DOMDisplay(parent, level) {
   this.drawFrame();
 }
 
-var scale = 20; //px/object
+var scale = 30; //px/object
 
 DOMDisplay.prototype.drawBackground = function() {
   var table = elt("table", "background");
@@ -292,16 +295,18 @@ Player.prototype.act = function(step, level, keys) {
 Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
     this.status = "lost";
-    this.finishDelay = 1;
+    this.finishDelay = 3;
   } else if (type == "coin"){
     this.actors = this.actors.filter(function(other) {
       return other != actor;
     });
     if (!this.actors.some(function(actor) {
+            points += 100;
+            document.getElementById('points').innerHTML = points;
       return actor.type == "coin";
     })) {
       this.status = "won";
-      this.finishDelay = 1;
+      this.finishDelay = 3;
     }
   }
 };

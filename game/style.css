@@ -1,5 +1,6 @@
 .background {
-  background: rgb(52, 166, 251);
+  background-image: url('/images/starry_sky_background.gif');
+  background-repeat: round;
   border-spacing: 0;
 }
 
@@ -7,12 +8,31 @@
   padding: 0;
 }
 
+#players {
+  display: flex;
+  flex-flow: row;
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+#score {
+  position: absolute;
+  margin-left: 60%;
+  margin-top: 20px;
+  color: red;
+  font-size: 2em;
+  font-family: 'Lakki Reddy', monospace;
+  z-index: 3;
+}
+
 .lava {
-  background: rgb(255, 100, 100);
+  background-image: url('/images/lava.gif');
+  background-size: cover;
 }
 
 .wall {
-  background: white;
+  background-image: url('/images/B100M801.BMP');
+  background-size: cover;
 }
 
 .actor {
@@ -21,10 +41,21 @@
 
 .coin {
   background: rgb(241, 229, 89);
+  background-image: url('/images/gold_marble.gif');
+  background-position: center;
+  background-size: contain;
+  border-radius: 50%;
+  border: 1px outset yellow;
+
 }
 
 .player {
-  background: rgb(64, 64, 64);
+  background: white;
+  border-radius: 25%;
+  border-top-right-radius: 60%;
+  border-top-left-radius: 60%;
+  border: 3px inset black;
+
 }
 
 .lost .player {
@@ -37,7 +68,8 @@
 
 .game {
   overflow: hidden;
-  max-width: 600px;
-  max-height: 450px;
+  width: 1000px;
+  height: 700px;
   position: relative;
+  border: 7px ridge lightgray;
 }
