@@ -13,9 +13,16 @@ var simpleLevelPlan = [
 var points = 0;
 document.getElementById('points').innerHTML = points;
 
-$(document).ready(function(){
-    $('.player').addClass('playerStand');
-});
+function randomBG(){
+  $(document).ready(function(){
+      var walls = document.getElementsByClassName('wall');
+      for (var i = 0; i < walls.length; i++){
+        var e = Math.floor(Math.random() * 26)  + 1;
+        console.log(e);
+        walls[i].style.backgroundImage="url(images/bg/"+e+".bmp)";
+      }
+  });
+};
 
 var go = new Audio('/sounds/soundfx/3-2-1-go.wav');
 go.loop = false;
@@ -383,6 +390,7 @@ function runLevel(level, Display, andThen) {
 
 function runGame(plans, Display) {
   function startLevel(n) {
+    randomBG();
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);

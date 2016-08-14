@@ -36,6 +36,10 @@
   background-size: cover;
 }
 
+.bg1 {
+  background-image: url('/images/raining_gold.gif');
+}
+
 .actor {
   position: absolute;
 }
