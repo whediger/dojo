@@ -11,8 +11,22 @@ var simpleLevelPlan = [
 ];
 
 var points = 0;
-
 document.getElementById('points').innerHTML = points;
+
+$(document).ready(function(){
+    $('.player').addClass('playerStand');
+});
+
+var go = new Audio('/sounds/soundfx/3-2-1-go.wav');
+go.loop = false;
+var shimmer = new Audio('/sounds/soundfx/shimmer_1.ogg');
+shimmer.loop = false;
+var audio = new Audio('/sounds/nebula.ogg');
+audio.loop = true;
+var end = new Audio('/sounds/soundfx/end_level.ogg');
+end.loop = false;
+var yell = new Audio('/sounds/soundfx/3yell14.wav');
+yell.loop = false;
 
 var actorChars = {
   "@": Player,
@@ -31,11 +45,8 @@ function Level(plan) {
     for (var x = 0; x < this.width; x++) {
       var ch = line[x], fieldType = null;
       var Actor = actorChars[ch];
-      if (Actor){
-        if (ch == "v")
-          console.log(ch);
+      if (Actor)
         this.actors.push(new Actor(new Vector(x, y), ch));
-      }
       else if (ch == "x")
         fieldType = "wall";
       else if (ch == "!")
@@ -253,8 +264,6 @@ Player.prototype.moveX = function(step, level, keys) {
     this.speed.x -= playerXSpeed;
   }
   if (keys.right) {
-    //$('.player').css('transform', 'rotateY(0deg)')
-    //console.log($('.player'));
     this.speed.x += playerXSpeed;
   }
   var motion = new Vector(this.speed.x * step, 0);
@@ -292,7 +301,6 @@ Player.prototype.act = function(step, level, keys) {
   var otherActor = level.actorAt(this);
   if (otherActor)
     level.playerTouched(otherActor.type, otherActor);
-
   //loosing animation, slow dropdown
   if (level.status == "lost") {
     this.pos.y += step;
@@ -302,9 +310,13 @@ Player.prototype.act = function(step, level, keys) {
 
 Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
+    audio.pause();
+    yell.play();
     this.status = "lost";
     this.finishDelay = 3;
   } else if (type == "coin"){
+    shimmer.pause();
+    shimmer.play();
     this.actors = this.actors.filter(function(other) {
       return other != actor;
     });
@@ -313,8 +325,10 @@ Level.prototype.playerTouched = function(type, actor) {
       document.getElementById('points').innerHTML = points;
       return actor.type == "coin";
     })) {
+      end.play();
+      audio.pause();
       this.status = "won";
-      this.finishDelay = 3;
+      this.finishDelay = 8;
     }
   }
 };
@@ -353,6 +367,7 @@ function runAnimation(frameFunc) {
 var arrows = trackKeys(arrowCodes);
 
 function runLevel(level, Display, andThen) {
+  audio.play();
   var display = new Display(document.body, level);
   runAnimation(function(step) {
     level.animate(step, arrows);
