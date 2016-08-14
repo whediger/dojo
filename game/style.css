@@ -8,13 +8,6 @@
   padding: 0;
 }
 
-#players {
-  display: flex;
-  flex-flow: row;
-  position: absolute;
-  margin-left: 20px;
-  margin-top: 20px;
-}
 #score {
   position: absolute;
   margin-left: 60%;
@@ -30,6 +23,14 @@
   background-size: cover;
 }
 
+.actor.lava {
+  border-radius: 10px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 15px;
+  transform: rotate(-45deg);
+}
+
 .wall {
   background-image: url('/images/B100M801.BMP');
   background-size: cover;
@@ -37,6 +38,11 @@
 
 .actor {
   position: absolute;
+}
+
+.wall {
+  box-shadow: 2px 2px 3px black;
+  border-radius: 10px;
 }
 
 .coin {
@@ -50,11 +56,10 @@
 }
 
 .player {
-  background: white;
-  border-radius: 25%;
-  border-top-right-radius: 60%;
-  border-top-left-radius: 60%;
-  border: 3px inset black;
+  background-image: url('./images/all_gnomes.png');
+  background-size: 130px;
+  background-position: -7px -0px;
+  transform:rotateY(180deg);
 
 }
 

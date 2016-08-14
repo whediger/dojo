@@ -31,8 +31,11 @@ function Level(plan) {
     for (var x = 0; x < this.width; x++) {
       var ch = line[x], fieldType = null;
       var Actor = actorChars[ch];
-      if (Actor)
+      if (Actor){
+        if (ch == "v")
+          console.log(ch);
         this.actors.push(new Actor(new Vector(x, y), ch));
+      }
       else if (ch == "x")
         fieldType = "wall";
       else if (ch == "!")
@@ -68,8 +71,8 @@ Vector.prototype.times = function(factor) {
 };
 
 function Player(pos) {
-  this.pos = pos.plus(new Vector(0, -0.5));
-  this.size = new Vector(0.8, 1.5);
+  this.pos = pos.plus(new Vector(0, -1.7));
+  this.size = new Vector( 1, 1.5);
   this.speed = new Vector(0, 0);``
 }
 
@@ -246,9 +249,14 @@ var playerXSpeed = 7;
 
 Player.prototype.moveX = function(step, level, keys) {
   this.speed.x = 0;
-  if (keys.left) this.speed.x -= playerXSpeed;
-  if (keys.right) this.speed.x += playerXSpeed;
-
+  if (keys.left) {
+    this.speed.x -= playerXSpeed;
+  }
+  if (keys.right) {
+    //$('.player').css('transform', 'rotateY(0deg)')
+    //console.log($('.player'));
+    this.speed.x += playerXSpeed;
+  }
   var motion = new Vector(this.speed.x * step, 0);
   var newPos = this.pos.plus(motion);
   var obstacle = level.obstacleAt(newPos, this.size);
@@ -301,8 +309,8 @@ Level.prototype.playerTouched = function(type, actor) {
       return other != actor;
     });
     if (!this.actors.some(function(actor) {
-            points += 100;
-            document.getElementById('points').innerHTML = points;
+      points += 100;
+      document.getElementById('points').innerHTML = points;
       return actor.type == "coin";
     })) {
       this.status = "won";
