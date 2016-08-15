@@ -9,31 +9,52 @@ var simpleLevelPlan = [
   "    xxxxxxxxxxxxxxxxxx",
   "                      "
 ];
-
+// --initialization +==}========>
 var points = 0;
 document.getElementById('points').innerHTML = points;
 
-function randomBG(){
+
+//random tile generator
+function randomTiles(level){
   $(document).ready(function(){
       var walls = document.getElementsByClassName('wall');
       for (var i = 0; i < walls.length; i++){
         var e = Math.floor(Math.random() * 26)  + 1;
-        console.log(e);
-        walls[i].style.backgroundImage="url(images/bg/"+e+".bmp)";
+        walls[i].style.backgroundImage="url(images/bg"+level+"/"+e+".bmp)";
       }
   });
 };
 
+//--sprite actions +==}========>
+
+var playerActCl = {
+  action: "",
+  setAction: function(classIn){
+    this.action = " " + classIn;
+  },
+  getAction: function(){
+    return this.action;
+  }
+}
+
+playerActCl.setAction("lookLeft");
+console.log(playerActCl.getAction());
+
+//sounds --- +==}========>
 var go = new Audio('/sounds/soundfx/3-2-1-go.wav');
 go.loop = false;
-var shimmer = new Audio('/sounds/soundfx/shimmer_1.ogg');
-shimmer.loop = false;
+function shimmer(){
+  var sh = new Audio('/sounds/soundfx/shimmer_1.ogg');
+  sh.loop = false;
+  return sh;
+}
 var audio = new Audio('/sounds/nebula.ogg');
 audio.loop = true;
 var end = new Audio('/sounds/soundfx/end_level.ogg');
 end.loop = false;
 var yell = new Audio('/sounds/soundfx/3yell14.wav');
 yell.loop = false;
+//------------------------
 
 var actorChars = {
   "@": Player,
@@ -41,6 +62,7 @@ var actorChars = {
   "=": Lava, "|": Lava, "v": Lava
 };
 
+//load level
 function Level(plan) {
   this.width = plan[0].length;
   this.height = plan.length;
@@ -52,8 +74,11 @@ function Level(plan) {
     for (var x = 0; x < this.width; x++) {
       var ch = line[x], fieldType = null;
       var Actor = actorChars[ch];
-      if (Actor)
+      if (Actor){
         this.actors.push(new Actor(new Vector(x, y), ch));
+        $('.player').css('margin-left', x * scale);
+        $('.player').css('margin-top', (y-1.7) * scale);
+      }
       else if (ch == "x")
         fieldType = "wall";
       else if (ch == "!")
@@ -69,12 +94,12 @@ function Level(plan) {
   this.status = this.finishDelay = null;
 }
 
+//exends load level
 Level.prototype.isFinished = function() {
   return this.status != null && this.finishDelay < 0;
 };
 
-//-----------------------------------------------------
-
+//-- create models for actors +==}========>
 function Vector(x, y) {
   this.x = x;
   this.y = y;
@@ -90,10 +115,9 @@ Vector.prototype.times = function(factor) {
 
 function Player(pos) {
   this.pos = pos.plus(new Vector(0, -1.7));
-  this.size = new Vector( 1, 1.5);
+  this.size = new Vector( 1, 1.46);
   this.speed = new Vector(0, 0);``
 }
-
 Player.prototype.type = "player";
 
 function Lava(pos, ch) {
@@ -117,13 +141,7 @@ function Coin(pos) {
 }
 Coin.prototype.type = "coin";
 
-//************************
-var simpleLevel = new Level(simpleLevelPlan);
-//console.log(simpleLevel.width, "by", simpleLevel.height);
-//************************
-
-//----------Display
-
+//---create DOM elements +==}========>
 function elt(name, className) {
   var elt = document.createElement(name);
   if (className) elt.className = className;
@@ -157,7 +175,7 @@ DOMDisplay.prototype.drawBackground = function() {
 DOMDisplay.prototype.drawActors = function() {
   var wrap = elt("div");
   this.level.actors.forEach(function(actor){
-    var rect = wrap.appendChild(elt("div", "actor " + actor.type));
+    var rect = wrap.appendChild(elt("canvas", "actor " + actor.type + playerActCl.getAction()));
     rect.style.width = actor.size.x * scale + "px";
     rect.style.height = actor.size.y * scale + "px";
     rect.style.left = actor.pos.x * scale + "px";
@@ -268,9 +286,11 @@ var playerXSpeed = 7;
 Player.prototype.moveX = function(step, level, keys) {
   this.speed.x = 0;
   if (keys.left) {
+    playerActCl.setAction("lookLeft")
     this.speed.x -= playerXSpeed;
   }
   if (keys.right) {
+    playerActCl.setAction("lookRight")
     this.speed.x += playerXSpeed;
   }
   var motion = new Vector(this.speed.x * step, 0);
@@ -282,6 +302,7 @@ Player.prototype.moveX = function(step, level, keys) {
     this.pos = newPos;
 };
 
+// physics coefficients
 var gravity = 30;
 var jumpSpeed = 17;
 
@@ -322,8 +343,9 @@ Level.prototype.playerTouched = function(type, actor) {
     this.status = "lost";
     this.finishDelay = 3;
   } else if (type == "coin"){
-    shimmer.pause();
-    shimmer.play();
+    var coinGrab = new shimmer();
+    coinGrab.pause();
+    coinGrab.play();
     this.actors = this.actors.filter(function(other) {
       return other != actor;
     });
@@ -390,7 +412,7 @@ function runLevel(level, Display, andThen) {
 
 function runGame(plans, Display) {
   function startLevel(n) {
-    randomBG();
+    randomTiles(0);
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);

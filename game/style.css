@@ -1,6 +1,7 @@
 .background {
-  background-image: url('/images/starry_sky_background.gif');
-  background-repeat: round;
+  background-image: url('/images/beach-bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
   border-spacing: 0;
 }
 
@@ -15,6 +16,7 @@
   color: red;
   font-size: 2em;
   font-family: 'Lakki Reddy', monospace;
+  text-shadow: 1px 1px 2px white;
   z-index: 3;
 }
 
@@ -27,7 +29,7 @@
   border-radius: 10px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 20px;
   transform: rotate(-45deg);
 }
 
@@ -36,16 +38,12 @@
   background-size: cover;
 }
 
-.bg1 {
-  background-image: url('/images/raining_gold.gif');
-}
-
 .actor {
   position: absolute;
 }
 
 .wall {
-  box-shadow: 2px 2px 3px black;
+  box-shadow: 2px 2px 3px #31474B;
   border-radius: 10px;
 }
 
@@ -62,8 +60,16 @@
 .player {
   background-image: url('./images/all_gnomes.png');
   background-size: 130px;
-  background-position: -7px -0px;
-  transform:rotateY(180deg);
+  background-position: -6px 0px;
+  transform: rotateY(180deg);
+}
+
+.lookLeft {
+  transform: rotateY(0deg);
+}
+
+.lookRight {
+  transform: rotateY(180deg);
 }
 
 .lost .player {
