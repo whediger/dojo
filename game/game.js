@@ -1,25 +1,49 @@
-var simpleLevelPlan = [
-  "                      ",
-  "                      ",
-  "x                   =x",
-  "x              o o   x",
-  "x @           xxxxx  x",
-  "xxxxx                x",
-  "    x!!!!!!!!!!!!!!!!x",
-  "    xxxxxxxxxxxxxxxxxx",
-  "                      "
-];
+
 // --initialization +==}========>
 var points = 0;
 document.getElementById('points').innerHTML = points;
 
 
-//random tile generator
+//level media
+var levelBG = {
+  level: 0,
+  setBG: function(l) {
+    if (l === 0)
+      this.level = 'background0';
+    if (l === 1)
+      this.level = 'background1';
+    if (l === 2)
+      this.level = 'background2';
+  },
+  getBG: function(){
+    return this.level;
+  }
+}
+
+function newLevelMedia(level) {
+  if (level === 0){
+    level0.play();
+  } else if (level === 1) {
+    level0.pause();
+    level1.play();
+  } else if (level === 2){
+    level1.pause();
+    level2.play();
+  }
+}
+
 function randomTiles(level){
   $(document).ready(function(){
+      var tileNo = 0;
+      if (level === 0)
+        tileNo = 26;
+      else if (level == 1)
+        tileNo = 10;
+      else if (level == 2)
+        tileNo = 8;
       var walls = document.getElementsByClassName('wall');
       for (var i = 0; i < walls.length; i++){
-        var e = Math.floor(Math.random() * 26)  + 1;
+        var e = Math.floor(Math.random() * tileNo)  + 1;
         walls[i].style.backgroundImage="url(images/bg"+level+"/"+e+".bmp)";
       }
   });
@@ -37,9 +61,6 @@ var playerActCl = {
   }
 }
 
-playerActCl.setAction("lookLeft");
-console.log(playerActCl.getAction());
-
 //sounds --- +==}========>
 var go = new Audio('/sounds/soundfx/3-2-1-go.wav');
 go.loop = false;
@@ -48,8 +69,12 @@ function shimmer(){
   sh.loop = false;
   return sh;
 }
-var audio = new Audio('/sounds/nebula.ogg');
-audio.loop = true;
+var level0 = new Audio('/sounds/jump-and-run-tropics.ogg');
+level0.loop = true;
+var level1 = new Audio('/sounds/nebula.ogg');
+level1.loop = true;
+var level2 = new Audio('/sounds/bubble_nogb_v.mp3');
+level2.loop = true
 var end = new Audio('/sounds/soundfx/end_level.ogg');
 end.loop = false;
 var yell = new Audio('/sounds/soundfx/3yell14.wav');
@@ -144,6 +169,7 @@ Coin.prototype.type = "coin";
 //---create DOM elements +==}========>
 function elt(name, className) {
   var elt = document.createElement(name);
+  if (className === 'background') className += ' ' + levelBG.getBG();
   if (className) elt.className = className;
   return elt;
 }
@@ -175,7 +201,12 @@ DOMDisplay.prototype.drawBackground = function() {
 DOMDisplay.prototype.drawActors = function() {
   var wrap = elt("div");
   this.level.actors.forEach(function(actor){
-    var rect = wrap.appendChild(elt("canvas", "actor " + actor.type + playerActCl.getAction()));
+    if (actor.type == 'player'){
+      var rect = wrap.appendChild(elt("canvas", "actor " + actor.type + playerActCl.getAction()));
+      playerActCl.setAction("");
+    } else {
+      var rect = wrap.appendChild(elt("canvas", "actor " + actor.type));
+    }
     rect.style.width = actor.size.x * scale + "px";
     rect.style.height = actor.size.y * scale + "px";
     rect.style.left = actor.pos.x * scale + "px";
@@ -338,7 +369,6 @@ Player.prototype.act = function(step, level, keys) {
 
 Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
-    audio.pause();
     yell.play();
     this.status = "lost";
     this.finishDelay = 3;
@@ -355,7 +385,6 @@ Level.prototype.playerTouched = function(type, actor) {
       return actor.type == "coin";
     })) {
       end.play();
-      audio.pause();
       this.status = "won";
       this.finishDelay = 8;
     }
@@ -396,7 +425,7 @@ function runAnimation(frameFunc) {
 var arrows = trackKeys(arrowCodes);
 
 function runLevel(level, Display, andThen) {
-  audio.play();
+
   var display = new Display(document.body, level);
   runAnimation(function(step) {
     level.animate(step, arrows);
@@ -412,14 +441,16 @@ function runLevel(level, Display, andThen) {
 
 function runGame(plans, Display) {
   function startLevel(n) {
-    randomTiles(0);
+    levelBG.setBG(n);
+    newLevelMedia(n);
+    randomTiles(n); //change to n for different tiles on each level
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);
       else if (n < plans.length -1 )
         startLevel(n + 1);
       else
-        console.log("You win!");
+        console.log("You win!");//todo add grand finale
     });
   }
   startLevel(0);

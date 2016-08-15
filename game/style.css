@@ -1,5 +1,25 @@
 .background {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-spacing: 0;
+}
+
+.background0 {
   background-image: url('/images/beach-bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-spacing: 0;
+}
+
+.background1 {
+  background-image: url('/images/jungle-bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-spacing: 0;
+}
+
+.background2 {
+  background-image: url('/images/city-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   border-spacing: 0;
@@ -60,15 +80,17 @@
 .player {
   background-image: url('./images/all_gnomes.png');
   background-size: 130px;
-  background-position: -6px 0px;
+  background-position: -6px 86px;
   transform: rotateY(180deg);
 }
 
 .lookLeft {
+  background-position: -6px 0px;
   transform: rotateY(0deg);
 }
 
 .lookRight {
+  background-position: -6px 0px;
   transform: rotateY(180deg);
 }
 
