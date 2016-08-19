@@ -12,7 +12,7 @@
 }
 
 .background1 {
-  background-image: url('/images/jungle-bg.jpeg');
+  background-image: url('/images/forest-bg.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   border-spacing: 0;
@@ -31,7 +31,7 @@
 
 #score {
   position: absolute;
-  margin-left: 60%;
+  margin-left: 10%;
   margin-top: 20px;
   color: red;
   font-size: 2em;
@@ -41,7 +41,19 @@
 }
 
 .lava {
-  background-image: url('/images/lava.gif');
+  background-image: url('/images/bg0/hazard/hazard0.gif');
+  background-size: cover;
+}
+.lava0 {
+  background-image: url('/images/bg0/hazard/hazard0.gif');
+  background-size: cover;
+}
+.lava1 {
+  background-image: url('/images/bg1/hazard/hazard1.gif');
+  background-size: cover;
+}
+.lava2 {
+  background-image: url('/images/bg2/hazard/hazard2.gif');
   background-size: cover;
 }
 
@@ -63,7 +75,7 @@
 }
 
 .wall {
-  box-shadow: 2px 2px 3px #31474B;
+  box-shadow: 2px 2px 3px black;
   border-radius: 10px;
 }
 
