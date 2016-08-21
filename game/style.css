@@ -14,8 +14,6 @@
 .background1 {
   background-image: url('/images/forest-bg.jpeg');
   background-size: cover;
-  background-repeat: no-repeat;
-  border-spacing: 0;
 }
 
 .background2 {
@@ -24,6 +22,14 @@
   background-repeat: no-repeat;
   border-spacing: 0;
 }
+.background3 {
+  background-image: url('/images/scary-bg.jpg');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-spacing: 0;
+}
+
 
 .background td {
   padding: 0;
@@ -54,6 +60,12 @@
 }
 .lava2 {
   background-image: url('/images/bg2/hazard/hazard2.gif');
+  box-shadow: 0px 0px 8px 3px green;
+  background-size: cover;
+}
+.lava3 {
+  background-image: url('/images/bg3/hazard/hazard3.gif');
+  box-shadow: 0px 0px 8px 3px red;
   background-size: cover;
 }
 
@@ -92,18 +104,25 @@
 .player {
   background-image: url('./images/all_gnomes.png');
   background-size: 130px;
-  background-position: -6px 86px;
+  /*background-position: -95px 257px;*/ /*take a step */
+  /*background-position: -51px 260px;*/ /*lifts arms up*/
+  background-position: -7px 86px;
   transform: rotateY(180deg);
+
 }
 
 .lookLeft {
   background-position: -6px 0px;
   transform: rotateY(0deg);
+
 }
 
 .lookRight {
   background-position: -6px 0px;
   transform: rotateY(180deg);
+}
+.playerStep {
+  background-position: -91px 258px; /*take a step*/
 }
 
 .lost .player {

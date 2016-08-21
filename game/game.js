@@ -26,6 +26,7 @@ function stopLevelMedia() {
     level0.pause();
     level1.pause();
     level2.pause();
+    level3.pause();
 }
 
 function newLevelMedia(level) {
@@ -35,6 +36,8 @@ function newLevelMedia(level) {
         level1.play();
     } else if (level === 2) {
         level2.play();
+    } else if (level === 3) {
+        level3.play();
     }
 }
 
@@ -47,6 +50,8 @@ function randomTiles(level) {
             tileNo = 10;
         else if (level == 2)
             tileNo = 8;
+        else if (level == 3)
+            tileNo = 4;
         var walls = document.getElementsByClassName('wall');
         for (var i = 0; i < walls.length; i++) {
             var e = Math.floor(Math.random() * tileNo) + 1;
@@ -63,8 +68,22 @@ function randomTiles(level) {
 
 var playerActCl = {
     action: "",
+    actionCounter: 0,
+    walkStep: false,
     setAction: function(classIn) {
-        this.action = " " + classIn;
+        this.action = "";
+        if(classIn === 'lookLeft' || classIn === 'lookRight'){
+          this.actionCounter++;
+          if(this.actionCounter == 5) {
+            if(this.walkStep)
+              this.walkStep = false;
+            else if(!this.walkStep)
+              this.walkStep = true;
+              this.action = ' playerStep';
+            this.actionCounter = 0;
+          }
+        }
+        this.action = this.action + " " + classIn;
     },
     getAction: function() {
         return this.action;
@@ -86,6 +105,8 @@ var level1 = new Audio('/sounds/bubble_nogb_v.mp3');
 level1.loop = true;
 var level2 = new Audio('/sounds/nebula.ogg');
 level2.loop = true
+var level3 = new Audio('/sounds/Martin_R_-_Phat_Bassy_Birds.mp3');
+level3.loop = true
 var end = new Audio('/sounds/soundfx/end_level.ogg');
 end.loop = false;
 var yell = new Audio('/sounds/soundfx/3yell14.wav');
@@ -154,9 +175,8 @@ Vector.prototype.times = function(factor) {
 
 function Player(pos) {
     this.pos = pos.plus(new Vector(0, -1.7));
-    this.size = new Vector(1, 1.46);
+    this.size = new Vector(1, 1.33);
     this.speed = new Vector(0, 0);
-    ``
 }
 Player.prototype.type = "player";
 
@@ -472,7 +492,7 @@ function runGame(plans, Display) {
         levelBG.setBG(n);
         levelBG.setLava();
         newLevelMedia(n);
-        randomTiles(n); //change to n for different tiles on each level
+        randomTiles(n);
         runLevel(new Level(plans[n]), Display, function(status) {
             if (status == "lost")
                 startLevel(n);
