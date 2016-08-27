@@ -65,7 +65,6 @@ function randomTiles(level) {
 };
 
 //--sprite actions +==}========>
-
 var playerActCl = {
     action: "",
     actionCounter: 0,
@@ -411,11 +410,11 @@ Level.prototype.playerTouched = function(type, actor) {
     if (type == "lava" && this.status == null) {
         yell.play();
         stopLevelMedia();
-        this.status = "lost";
         this.finishDelay = 3;
+        this.status = "lost";
+
     } else if (type == "coin") {
         var coinGrab = new shimmer();
-        coinGrab.pause();
         coinGrab.play();
         this.actors = this.actors.filter(function(other) {
             return other != actor;
@@ -427,8 +426,8 @@ Level.prototype.playerTouched = function(type, actor) {
             })) {
             stopLevelMedia();
             end.play();
-            this.status = "won";
             this.finishDelay = 8;
+            this.status = "won";
         }
     }
 };
@@ -502,6 +501,6 @@ function runGame(plans, Display) {
                 console.log("You win!"); //todo add grand finale
         });
     }
-    startLevel(0);
+      startLevel(0);
 
 }

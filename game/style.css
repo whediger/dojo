@@ -1,142 +1,125 @@
 .background {
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-spacing: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-spacing: 0;
 }
-
 .background0 {
-  background-image: url('/images/beach-bg.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-spacing: 0;
+    background-image: url('/images/beach-bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-spacing: 0;
 }
-
 .background1 {
-  background-image: url('/images/forest-bg.jpeg');
-  background-size: cover;
+    background-image: url('/images/forest-bg.jpeg');
+    background-position: bottom;
+    background-size: cover;
 }
-
 .background2 {
-  background-image: url('/images/city-bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-spacing: 0;
+    background-image: url('/images/city-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-spacing: 0;
 }
 .background3 {
-  background-image: url('/images/scary-bg.jpg');
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  border-spacing: 0;
+    background-image: url('/images/scary-bg.jpg');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    border-spacing: 0;
 }
-
-
 .background td {
-  padding: 0;
+    padding: 0;
 }
-
 #score {
-  position: absolute;
-  margin-left: 10%;
-  margin-top: 20px;
-  color: red;
-  font-size: 2em;
-  font-family: 'Lakki Reddy', monospace;
-  text-shadow: 1px 1px 2px white;
-  z-index: 3;
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 20px;
+    color: red;
+    font-size: 2em;
+    font-family: 'Lakki Reddy', monospace;
+    text-shadow: 0px 0px 3px white;
+    z-index: 3;
 }
-
 .lava {
-  background-image: url('/images/bg0/hazard/hazard0.gif');
-  background-size: cover;
+    background-image: url('/images/bg0/hazard/hazard0.gif');
+    background-size: cover;
 }
 .lava0 {
-  background-image: url('/images/bg0/hazard/hazard0.gif');
-  background-size: cover;
+    background-image: url('/images/bg0/hazard/hazard0.gif');
+    background-size: cover;
 }
 .lava1 {
-  background-image: url('/images/bg1/hazard/hazard1.gif');
-  background-size: cover;
+    background-image: url('/images/bg1/hazard/hazard1.gif');
+    background-size: cover;
 }
 .lava2 {
-  background-image: url('/images/bg2/hazard/hazard2.gif');
-  box-shadow: 0px 0px 8px 3px green;
-  background-size: cover;
+    background-image: url('/images/bg2/hazard/hazard2.gif');
+    box-shadow: 0px 0px 8px 3px green;
+    background-size: cover;
 }
 .lava3 {
-  background-image: url('/images/bg3/hazard/hazard3.gif');
-  box-shadow: 0px 0px 8px 3px red;
-  background-size: cover;
+    background-image: url('/images/bg3/hazard/hazard3.gif');
+    box-shadow: 0px 0px 8px 3px red;
+    background-size: cover;
 }
-
 .actor.lava {
-  border-radius: 10px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transform: rotate(-45deg);
+    border-radius: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: rotate(-45deg);
 }
-
 .wall {
-  background-image: url('/images/B100M801.BMP');
-  background-size: cover;
+    background-size: cover;
 }
-
 .actor {
-  position: absolute;
+    position: absolute;
 }
-
 .wall {
-  box-shadow: 2px 2px 3px black;
-  border-radius: 10px;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 10px;
 }
-
 .coin {
-  background: rgb(241, 229, 89);
-  background-image: url('/images/gold_marble.gif');
-  background-position: center;
-  background-size: contain;
-  border-radius: 50%;
-  border: 1px outset yellow;
-
+    background: rgb(241, 229, 89);
+    background-image: url('/images/gold_marble.gif');
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    border: 1px outset yellow;
 }
-
 .player {
-  background-image: url('./images/all_gnomes.png');
-  background-size: 130px;
-  /*background-position: -95px 257px;*/ /*take a step */
-  /*background-position: -51px 260px;*/ /*lifts arms up*/
-  background-position: -7px 86px;
-  transform: rotateY(180deg);
-
+    background-image: url('./images/all_gnomes.png');
+    background-size: 130px;
+    /*background-position: -95px 257px;*/
+    /*take a step */
+    /*background-position: -51px 260px;*/
+    /*lifts arms up*/
+    background-position: -7px 86px;
+    /* standing still */
+    transform: rotateY(180deg);
 }
-
 .lookLeft {
-  background-position: -6px 0px;
-  transform: rotateY(0deg);
-
+    background-position: -6px 0px;
+    transform: rotateY(0deg);
 }
-
 .lookRight {
-  background-position: -6px 0px;
-  transform: rotateY(180deg);
+    background-position: -6px 0px;
+    transform: rotateY(180deg);
 }
 .playerStep {
-  background-position: -91px 258px; /*take a step*/
+    background-position: -91px 258px;
+    /*take a step*/
 }
-
 .lost .player {
-  background: rgb(160, 64, 64);
+    background: rgb(160, 64, 64);
 }
-
 .won .player {
-  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+    box-shadow: -4px -7px 8px white, 4px -7px 8px white;
 }
-
 .game {
-  overflow: hidden;
-  width: 1000px;
-  height: 700px;
-  position: relative;
-  border: 7px ridge lightgray;
+    overflow: hidden;
+    width: 1000px;
+    height: 700px;
+    position: relative;
+    border: 7px ridge lightgray;
 }
