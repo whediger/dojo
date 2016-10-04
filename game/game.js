@@ -42,7 +42,6 @@ function newLevelMedia(level) {
 }
 
 function randomTiles(level) {
-    $(document).ready(function() {
         var tileNo = 0;
         if (level === 0)
             tileNo = 26;
@@ -63,7 +62,6 @@ function randomTiles(level) {
         for (var i = 0; i < hazard.length; i++) {
             hazard[i].style.backgroundImage = "url(images/bg" + level + "/hazard/hazard" + level + ".gif)";
         }
-    });
 };
 
 //--sprite actions +==}========>
