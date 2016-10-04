@@ -52,6 +52,8 @@ function randomTiles(level) {
             tileNo = 8;
         else if (level == 3)
             tileNo = 4;
+        else if (level == 4)
+            tileNo = 7;
         var walls = document.getElementsByClassName('wall');
         for (var i = 0; i < walls.length; i++) {
             var e = Math.floor(Math.random() * tileNo) + 1;
@@ -106,6 +108,7 @@ var level2 = new Audio('/sounds/nebula.ogg');
 level2.loop = true
 var level3 = new Audio('/sounds/Martin_R_-_Phat_Bassy_Birds.mp3');
 level3.loop = true
+
 var end = new Audio('/sounds/soundfx/end_level.ogg');
 end.loop = false;
 var yell = new Audio('/sounds/soundfx/3yell14.wav');
@@ -498,7 +501,7 @@ function runGame(plans, Display) {
             else if (n < plans.length - 1)
                 startLevel(n + 1);
             else
-                console.log("You win!"); //todo add grand finale
+                console.log("You win!"); //TODO add grand finale
         });
     }
       startLevel(0);
