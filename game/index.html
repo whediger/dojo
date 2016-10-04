@@ -5,6 +5,7 @@
     <title>Gnomeward Bound</title>
     <link rel="stylesheet" href="style.css" charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Lakki+Reddy" rel="stylesheet">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -12,16 +13,29 @@
     <div id="score">
       Score: <span id="points"></span>
     </div>
-
+    <div id="startScreen">
+      <h2>Welcome to</h2>
+      <h1>Gnomeward Bound!</h1>
+      <p>
+        Someone left a poor gnome on the beach and it must find it's way back to the garden.<br>
+        Everyone knows a gnome can't move by itself, will you help?
+      </p>
+      <ul>
+        <li>this game has sound. So turn it on!</li>
+        <li>to move use the left and right arrow keys: <i class="fa fa-arrow-left" aria-hidden="true"></i> <i class="fa fa-arrow-right" aria-hidden="true"></i></li>
+        <li>to jump use the up arrow key: <i class="fa fa-arrow-up" aria-hidden="true"></i></li>
+        <li>to advance to the next level, collect all the whazit seeds: <div class="seed">
+        </div></li>
+        <li>avoid any hot lava, water, nuclear waste, or scary creatures!</li>
+      </ul>
+      <button id="startButton" type="button" name="button" onclick="startGame()">Start The Adventure!</button>
+    </div>
     <!-- intro splash page and finish game popup -->
-      
+
 
 
     <!-- <canvas id="playerAnimation"></canvas> -->
     <script type="text/javascript" src="game.js"></script>
     <script type="text/javascript" src="levels.js"></script>
-    <script type="text/javascript">
-      runGame(GAME_LEVELS, DOMDisplay);
-    </script>
   </body>
 </html>

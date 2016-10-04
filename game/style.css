@@ -1,3 +1,74 @@
+#startScreen {
+  position: absolute;
+  border: 7px ridge lightgray;
+  height: 700px;
+  width: 1000px;
+  background: linear-gradient(to bottom right, blue, red);
+}
+#startScreen h1 {
+  margin: 0px;
+  margin-left: 10%;
+  margin-bottom: 0px;
+  font-family: 'Lakki Reddy', monospace;
+  font-size: 70px;
+  color: red;
+  text-shadow: 0px 0px 3px white;
+}
+#startScreen h2 {
+  margin-left: 10%;
+  margin-bottom: 0px;
+  color: lightgrey;
+  font-family: sans-serif, monospace;
+  font-size: 25px;
+  font-weight: bolder;
+}
+#startScreen p {
+  margin-left: 10%;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  color: lightgrey;
+  font-family: sans-serif, monospace;
+  font-size: 20px;
+  line-height: 30px;
+}
+#startScreen ul li {
+  margin-left: 10%;
+  margin-bottom: 30px;
+  list-style: none;
+  color: yellow;
+  font-family: sans-serif, monospace;
+  font-size: 25px;
+}
+#startScreen ul li .seed {
+  display: inline-block;
+  margin-bottom: -15px;
+  height: 40px;
+  width: 30px;
+  background: rgb(241, 229, 89);
+  background-image: url('/images/gold_marble.gif');
+  background-position: center;
+  background-size: contain;
+  border-radius: 50%;
+  border: 1px outset yellow;
+}
+#startScreen ul li i {
+  color: white;
+}
+#startButton {
+  margin-left: 10%;
+  height: 90px;
+  width: 600px;
+  font-size: 40px;
+  font-family: monospace;
+  color: white;
+  background-color: blue;
+  border-width: 5px;
+  border-radius: 20px;
+  outline: none;
+}
+#startButton:hover {
+  cursor: pointer;
+}
 .background {
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,9 +110,10 @@
     padding: 0;
 }
 #score {
+    display: none;
     position: absolute;
     margin-left: 10%;
-    margin-top: 20px;
+    margin-top: 30px;
     color: red;
     font-size: 2em;
     font-family: 'Lakki Reddy', monospace;

@@ -505,5 +505,10 @@ function runGame(plans, Display) {
         });
     }
       startLevel(0);
+}
 
+function startGame() {
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('score').style.display = 'block';
+  runGame(GAME_LEVELS, DOMDisplay);
 }
