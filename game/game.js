@@ -27,7 +27,6 @@ function stopLevelMedia() {
     level1.pause();
     level2.pause();
     level3.pause();
-    level4.pause();
 }
 
 function newLevelMedia(level) {
@@ -39,8 +38,6 @@ function newLevelMedia(level) {
         level2.play();
     } else if (level === 3) {
         level3.play();
-    } else if (level === 4) {
-        level4.play();
     }
 }
 
@@ -111,8 +108,6 @@ var level2 = new Audio('/sounds/nebula.ogg');
 level2.loop = true
 var level3 = new Audio('/sounds/Martin_R_-_Phat_Bassy_Birds.mp3');
 level3.loop = true
-var level4 = new Audio('/sounds/The_Family_Simpson_-_10_-_Its_A_Beautiful_World.mp3');
-level4.loop = true
 
 var end = new Audio('/sounds/soundfx/end_level.ogg');
 end.loop = false;
@@ -509,6 +504,6 @@ function runGame(plans, Display) {
                 console.log("You win!"); //TODO add grand finale
         });
     }
-      startLevel(4);
+      startLevel(0);
 
 }
