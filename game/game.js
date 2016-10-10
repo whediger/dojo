@@ -42,6 +42,7 @@ function newLevelMedia(level) {
 }
 
 function randomTiles(level) {
+    $(document).ready(function() {
         var tileNo = 0;
         if (level === 0)
             tileNo = 26;
@@ -62,6 +63,7 @@ function randomTiles(level) {
         for (var i = 0; i < hazard.length; i++) {
             hazard[i].style.backgroundImage = "url(images/bg" + level + "/hazard/hazard" + level + ".gif)";
         }
+    });
 };
 
 //--sprite actions +==}========>
@@ -411,6 +413,8 @@ Level.prototype.playerTouched = function(type, actor) {
     if (type == "lava" && this.status == null) {
         yell.play();
         stopLevelMedia();
+        points = 0;
+        document.getElementById('points').innerHTML = points;
         this.finishDelay = 3;
         this.status = "lost";
 

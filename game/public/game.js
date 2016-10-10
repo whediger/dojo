@@ -413,6 +413,8 @@ Level.prototype.playerTouched = function(type, actor) {
     if (type == "lava" && this.status == null) {
         yell.play();
         stopLevelMedia();
+        points = 0;
+        document.getElementById('points').innerHTML = points;
         this.finishDelay = 3;
         this.status = "lost";
 
