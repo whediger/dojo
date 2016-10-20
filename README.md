@@ -7,7 +7,7 @@
 * [Click here for live version of Gnomeward Bound. _Under Construction, game ends abruptly after level 4 and logs to the console "You Win!"_](https://gnomeward-bound.firebaseapp.com/)
 
 ## Fractle.html 
-* gennerates random fractle like patterns in canvas each time the page is refreashed
+* gennerates random fractle like patterns in canvas each time the page is refreashed (some are better than others)
 
 ## ElectronicLife
 * Is a simulated world where plants and animals live
