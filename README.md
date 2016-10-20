@@ -4,7 +4,7 @@
 ---------
 ## _Gnomeward Bound:_ in game folder
 * This started as a way to learn more about JavaScript Objects and became a full game
-* [Live version of Gnomeward Bound. _Under Construction_](https://gnomeward-bound.firebaseapp.com/)
+* [Live version of Gnomeward Bound. _Under Construction, game ends abruptly after level 4 and logs to the console "You Win!"_](https://gnomeward-bound.firebaseapp.com/)
 
 ## Fractle.html 
 * gennerates random fractle like patterns in canvas each time the page is refreashed
