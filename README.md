@@ -1,0 +1,22 @@
+# dojo
+---------
+## this is a repo I started for short projects that challenge myself
+---------
+## _Gnomeward Bound:_ in game folder
+* This started as a way to learn more about JavaScript Objects and became a full game
+* [Live version of Gnomeward Bound. _Under Construction_](https://gnomeward-bound.firebaseapp.com/)
+
+## Fractle.html 
+* gennerates random fractle like patterns in canvas each time the page is refreashed
+
+## ElectronicLife
+* Is a simulated world where plants and animals live
+* The plants grow, the animals eat them and one eventually goes exstinct
+* Future implementations:
+  * Translate from cammandline to 2D or 3D world
+  * Create better artificial intelligence models
+  * Introduce carnivores
+  * Possible game: 
+    * player is a wolf that needs to herd herbivores and eat them
+    * player must maintain the ecological ballance to keep game from ending
+    * Stretch to learn AI: Player is member of wolf pack, the pack acts as unit responding to commands
